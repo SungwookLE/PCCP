@@ -20,14 +20,14 @@ using namespace std;
 int N;
 vector<vector<int>> deltas = {{1,0},{-1,0},{0,1},{0,-1}};
 vector<vector<int>> aparts, marked;
-int numbers = 0;
+vector<int> numbersOfComplex;
 
 
 void DFS(int i , int j, int complex){
 
     aparts[i][j] = -1; // marking, 바로 방문
     marked[i][j] = complex;
-    numbers+=1;
+    numbersOfComplex[complex]++;
 
     for(auto d: deltas){
         int next_i = i + d[0];
@@ -46,7 +46,7 @@ int main(){
     cin >> N;
     aparts = vector<vector<int>>(N, vector<int>(N, 0));
     marked = vector<vector<int>>(N, vector<int>(N, 0));
-
+    numbersOfComplex = vector<int>(N*N,0);
 
     int count = 1;
     for(int i = 0 ; i < N; ++i){
@@ -55,14 +55,11 @@ int main(){
         }
     }
 
-    vector<int> numbersOfComplex;
     for(int i = 0 ; i < N; ++i){
         for(int j = 0 ; j < N ; ++j){
-            numbers = 0;
             if (aparts[i][j] == 1 ){
                 DFS(i, j, count);
                 count += 1;
-                numbersOfComplex.push_back(numbers);
             }
         }
     }
@@ -74,8 +71,9 @@ int main(){
     }
 
     cout << "--------------------\n";
-    sort(numbersOfComplex.begin(), numbersOfComplex.end());
-    for(auto n : numbersOfComplex) cout << n << " ";
+    sort(numbersOfComplex.begin()+1, numbersOfComplex.begin()+count);
+    for(int i = 1 ; i < count ; ++i) 
+        cout << numbersOfComplex[i] << " ";
     cout << endl;
 
     cout << count-1 << endl;

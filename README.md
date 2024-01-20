@@ -1,12 +1,19 @@
-# Coding Test 준비 for '24
-- PCCP (프로그래머스 코딩전문역량인증시험 일정)
-![](img/2024-01-13-01-42-42.png)
-- '24.2/18 시험 접수해보는 것으로
-- Lv3의 문제를 문제없이 풀면 가뿐하다는데...,
-- PCCP 시험을 보기 전에, 프로그래머스에서 제공하는 [스킬체크(난이도별)](https://school.programmers.co.kr/skill_checks)를 응시하면 좋은 준비가 될 듯
+# PCCP Coding Test for '24
+- PCCP (코딩전문역량인증시험 일정)
+    - ![](img/2024-01-13-01-42-42.png)
+    - Lv3의 문제를 문제없이 풀면 가뿐하다는데,
+    - '24.2/18 시험 접수해보는 것으로, 또는 3월 시험 일정
+    - PCCP 시험을 보기 전에, 프로그래머스에서 제공하는 [스킬체크(난이도별)](https://school.programmers.co.kr/skill_checks)를 응시하면 좋은 준비가 될 듯
 
+- 맥북 단축키 익히기
+    - 코드 러너 단축키: `ctrl+opt+N`
+    - 스크린샷: `shift+cmd+4`
+    - 마크다운 이미지 붙여넣기: `opt+cmd+v`
 
-## 1. Dynamic Programming
+---
+
+## 1. [인프런 강의1](https://www.inflearn.com/course/%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%98%BC%EC%9E%90-%EC%A0%95%EB%B3%B5/dashboard)
+### 1-1. Dynamic Programming
 
 - 수열을 떠올리자!
     - 수열은 초항(초기값)을 나타내는 값과,
@@ -20,17 +27,17 @@
 
 - 기본 문제 
     - 어떤 수열의 점화식과 초항이 유도되어 졌다면 이를 구현하는 방법(bottom-up)
-        - [점화식 동적프로그래밍](./dynamic_programming/dp_reccurence.cpp)
+        - [점화식 동적프로그래밍](./1_dp/dp_reccurence.cpp)
 
 - 연습 문제
     1. 금액을 지불하기 위한 동전의 최소 개수, 1차원
         - ![](img/2024-01-06-22-51-25.png)
-        - [코드](./dynamic_programming/dp_reccurence.cpp)
+        - [코드](./1_dp/dp_reccurence.cpp)
 
     2. 보석 배낭 채우기, 2차원
         - ![](img/2024-01-06-23-22-31.png)
-        - [코드_배열](./dynamic_programming/dp_backpack.cpp)
-        - [코드_배열Transpose](./dynamic_programming/dp_backpack_T.cpp)
+        - [코드_배열](./1_dp/dp_backpack.cpp)
+        - [코드_배열Transpose](./1_dp/dp_backpack_T.cpp)
             - 혼자 풀었을 때, 아이디어는 맞췄는데, 확신이 안서서 헤매었다. 점화식 유도를 클리어하게 하고 구현을 시작하자.
             - 배낭 무게를 늘려나가면서 순회를 하여야지, 보석을 무게 순으로 정렬할 필요가 없어진다.
             - 점화식 유도와 초기값을 잘 설정하는 것 2개 다 잘 정의하여야 한다.
@@ -38,7 +45,7 @@
     3. LCS(Longest Common Subsequence), 2차원
         - ![](img/2024-01-08-22-24-57.png)
         - ![](img/2024-01-08-22-25-26.png)
-        - [코드](./dynamic_programming/dp_LCS.cpp)
+        - [코드](./1_dp/dp_LCS.cpp)
 
 - 실전 문제 (프로그래머스)
     1. [N으로 표현](https://school.programmers.co.kr/learn/courses/30/lessons/42895)
@@ -51,17 +58,17 @@
                 if (data==number)
                     return 1;
         ```
-        - [코드](./dynamic_programming/N으로표현.cpp)
+        - [코드](./1_dp/N으로표현.cpp)
 
     2. [정수삼각형](https://school.programmers.co.kr/learn/courses/30/lessons/43105)
         - 이거는 한번에 풀었음 Lv3
         - 사실 한번 풀어봤던 문제라.. 
-        - [코드](./dynamic_programming/정수삼각형.cpp)
+        - [코드](./1_dp/정수삼각형.cpp)
 
     3. [등굣길](https://school.programmers.co.kr/learn/courses/30/lessons/42898)
         - a_star의 변형 정도의 dp 문제인데 왜 8번 시간초과지... 흠흠..
         - a_star풀이가 틀렸나 해서 몇번 생각했는데, 그게 아니고 애초에 a_star처럼 복잡한 길찾기 문제가 아니었기 때문에 훨씬 간단한 dp 알고리즘으로 풀 수 있었던 문제였다. 여러번 종이에 스케치해보면서 혼자 힘으로 풀긴 하였음 
-        - [코드](./dynamic_programming/등굣길.cpp) Lv3
+        - [코드](./1_dp/등굣길.cpp) Lv3
 
     4. [사칙연산](https://school.programmers.co.kr/learn/courses/30/lessons/1843)
         - Lv4 `보통 효율성을 보는 문제는 DFS나 BFS는 거른다고 생각하면 편할 것이다.(항상 그런건 아님 -_-;;)`
@@ -96,7 +103,7 @@
             }
             ```
 
-        - [코드](./dynamic_programming/사칙연산.cpp)
+        - [코드](./1_dp/사칙연산.cpp)
         
     5. [도둑질](https://school.programmers.co.kr/learn/courses/30/lessons/42897)
         - Lv4, 원형 배열의 1차원 DP 문제
@@ -105,22 +112,22 @@
                 1. 원형배열의 시작을 고려하되, 끝은 포함되지 않게끔
                 2. 원형배열의 끝은 고려하되, 시작은 포함되지 않게끔
             - 그래야지만, 첫 집이 선택됬을 때, 마지막 집이 선택되지 않게끔 할 수 있다.
-        - [코드](./dynamic_programming/도둑질.cpp)
+        - [코드](./1_dp/도둑질.cpp)
             - 정답을 거의 알려준거나 다름 없는 힌트를 보고 풀었다.
                 - 해설 잘하시는 분이네 ... https://school.programmers.co.kr/questions/31576
 
 - 백준 (DynamicProgramming)
     1. [타일링](https://www.acmicpc.net/problem/11726)
-        - [코드](./dynamic_programming/타일링.cpp)
+        - [코드](./1_dp/타일링.cpp)
     2. [타일링2](https://www.acmicpc.net/problem/11727)
-        - [코드](./dynamic_programming/타일링2.cpp)
+        - [코드](./1_dp/타일링2.cpp)
     3. [이친수](https://www.acmicpc.net/problem/2193)
-        - [코드](./dynamic_programming/이친수.cpp)
+        - [코드](./1_dp/이친수.cpp)
         -  위의 3개 문제가 같은 것이다. 피보나치 수열
             - 이전까지 계산되어온 값 + 이전이전까지 계산되어온 값
 
 
-## 2. Graph Search
+### 1-2. Graph Search
 - 그래프
     - Node(정점, Vertex)와 Edge(간선)으로 이루어져 있음
     - `G = (V, E)`
@@ -139,27 +146,27 @@
         - 미로의 자료구조를 그래프로 한다면 아래와 같이 표현할 수 있겠음
         ![](img/2024-01-14-23-53-37.png)
     - 직접 구현한 예제에서는 2차원 격자로 표현하였음 (보통은 2차원 격자로 풀 수 있게 주어진다)
-        - [길찾기](./graph_search/길찾기_BFS.cpp)
+        - [길찾기](./1_graph/길찾기_BFS.cpp)
     
     - DFS로도 풀어보자
-        - [길찾기2](./graph_search/길찾기_DFS.cpp)
+        - [길찾기2](./1_graph/길찾기_DFS.cpp)
         - 설명만 듣고 풀었는데, 구현이 엉성한 듯함
         - 예전에 한번 들은 강의인데, 구현 디테일을 깜빡한듯..ㅠ
         
 
-### 2-1. BFS(너비우선탐색)
+#### 1-2-1. BFS(너비우선탐색)
 
 1. 장기문제
     - ![](img/2024-01-15-22-16-58.png)
-    - [장기문제](./graph_search/장기문제_BFS.cpp)
+    - [장기문제](./1_graph/장기문제_BFS.cpp)
 
 2. 상한 귤
     - ![](img/2024-01-15-22-52-11.png)
     - ![](img/2024-01-15-22-53-40.png)
-    - [상한귤](./graph_search/상한귤_BFS.cpp)
+    - [상한귤](./1_graph/상한귤_BFS.cpp)
 
 
-### 3-1. DFS(깊이우선탐색)
+#### 1-3-1. DFS(깊이우선탐색)
 
 - DFS 구현은 Stack 자료형을 직접 사용할 수도 있지만 재귀호출(호출 스택)을 이용해서 구현하는 것이 쉽다.
     - ![](img/2024-01-15-23-51-38.png) 
@@ -168,7 +175,75 @@
 1. 아파트 단지
     - ![](img/2024-01-15-23-27-10.png)
     - DFS는 함수를 호출하는 형태니까, 전역변수를 활용해서 구현하는 것이 함수의 프로토타입이 단순해서 좋을 듯 하다.
+    - [아파트단지](./1_graph/아파트단지_DFS.cpp)
 
-# 아파트단지 문제 구현1 부터 듣기(1/16)
+2. 욕심쟁이 조이
+    - ![](img/2024-01-16-23-34-24.png)
+    - 아래 코드 처럼 풀면 매번 모든 좌표마다 DFS를 실행하게 되는 것으로 엄청난 연산 횟수를 필요로 하게 된다.
+        - [욕심쟁이 조이 Worst](./1_graph/욕심쟁이조이Worst_DFS.cpp)
+    - ![](img/2024-01-17-00-08-31.png)
+        - 연산 횟수를 줄일 수 있는 방법을 강구해야한다.
+            - 어쩐지 DFS로만 구현하니까 이거 DP로도 풀 수 있을것 같은 느낌/비효율적일거같은 느낌이 들었다.
+        - 다시 풀었는데, 오래 걸렸다. 호출 스택의 최상단 종료 시점과 최하단의 탈출 출력에 대해 고민했다.
+            - [욕심쟁이 조이 한번 더](./1_graph/욕심쟁이조이Again.cpp)
+
+## 2. [인프런 강의2](https://www.inflearn.com/course/10%EC%A3%BC%EC%99%84%EC%84%B1-%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%81%B0%EB%8F%8C/dashboard)
+
+- [알고리즘 수업자료](./material/알고리즘교안.pdf)
+- [문제 및 해설](./material/알고리즘+문제해설.pdf)
+
+### 2-1. 기본
+
+1. 재귀함수(recursion)
+- ![](img/2024-01-21-00-04-58.png)
+- 첫 문단에는 반드시 기저사례 (종료조건)을 포함해야 한다,
+- 두번째 문단은 재귀호출을 하는 라인이 위치
+    - 사이클이 있다면 쓰면 안된다. (종료가 안됨)
+- 마지막은 최종적으로 return 하고 싶은 값이 있다면 위치할 것
+    - 반복문으로 될 것 같으면 반복문으로 작성하는 것이 낫다.
+
+2. 순열(permutation)과 조합(combination)
+- 순열(permutation)은 순서가 상관있는 나열
+    - `std::next_permutation(begin(), end()) 오름차순으로 만들어줌`
+    - STL을 쓸 때, 배열은 정렬이 되어 있어야 함 (오름차순에 맞게)
+    - `std::prev_permutation(begin(), end()) 내림차순으로 만들어줌`
+    - [직접 구현은 재귀함수로 구현](./2_basic/permutation_self.cpp)
+
+- 조합(combination)은 순서가 상관없는 나열
+    - [combination 직접구현: 외워라 무조건](./2_basic/combination_self.cpp)
+    - [3개를 뽑는 것이면 for문 3개로도 풀 수 있다](./2_basic/combination_for.cpp)
+
+3. split() 함수
+- "aaa bbb ccc" => {"aaa", "bbb", "ccc"}
+    - STL에 `split`는 제공하지 않는다. 만들면 됨
+    ```c++
+    while ((pos = input.find(delimeter)) != string::npos){
+        token = input.substr(0, pos); // token에 찾은 부분을 넣어주고
+        ret.push_back(token);
+        input.erase(0, pos + delimeter.length()); // delimeter를 포함해서 지운다
+    }
+    ret.push_back(input); // 마지막 나머지도 ret 에 넣어줘야지
+    ```
+
+4. 메모리와 포인터
+- 메모리는 1바이트의 셀들로 이루어져있고, 각 셀들은 고유한 주소를 갖는다.
+    - int는 4바이트니까, int를 선언하면, 4개의 셀을 예약하게 된다.
+- 포인터는 메모리의 주소를 가리키는 타입 `Node* p`
+    - 포인터의 크기 (sizeof(p) = 8 <64비트 운영체제라면>)는 운영체제에 따라 다름
+- 역참조(dereference)
+    - 포인터 주소가 가리키는 value를 풀어헤친다는 의미지
+    ```c++
+    string a = "adv" // define & declaration
+    string *b = &a; // point
+    *b = "ggg" ; // de-reference
+    ```
+- 배열의 포인터
+    - 배열의 이름 = 주소값 (=Array to Pointer decay)
+    ```c++ 
+    int a[N];
+    int *c = a; // array to pointer decay, a 배열의 크기는 날라갔지만 이렇게 나타낼 수 있다는 것, 이렇게 될 경우 a의 첫번째 주소가 배열의 주소로 binding된다.
+
+    int* c = &a[0]; // 위와 같은 것임
+    ```
 
 
