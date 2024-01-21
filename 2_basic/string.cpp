@@ -1,4 +1,4 @@
-#include <string> 
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -16,7 +16,7 @@ int main()
     // string& erase (size_t pos = 0, size_t len = npos);
     a.erase(0, 5);
     cout << a << " : " << a.size() << "\n";
-    // size_t find (const string& str, size_t pos = 0); 
+    // size_t find (const string& str, size_t pos = 0);
     auto it = a.find("love");
     if (it != string::npos)
     {
