@@ -22,3 +22,17 @@ int main(){
     return 0;
 
 }
+
+
+
+void usingSTL(string A){
+
+    string temp = A;
+    reverse(temp.begin(), temp.end());
+
+    if ( temp == A){
+        // 출력
+    }
+
+
+}

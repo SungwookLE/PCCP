@@ -317,6 +317,23 @@
   - 배열: integer 요소일 경우
 
 - 백준 풀기
-  - [boj2309](./2_1주차/boj2309.cpp)
-  - [boj10808](./2_1주차/boj10808.cpp)
-
+  - [boj2309](./2_1주차/boj2309.cpp) // 1-A
+  - [boj10808](./2_1주차/boj10808.cpp) // 1-B
+  - [boj2979 나쁘게 푼 예시](./2_1주차/boj2979_bad.cpp)
+    - 구현문제처럼 긴 코드로 풀었는데..., 아래 처럼 푸는게 시간복잡도는 같긴 하지만 라인수가 적어 더 좋은 코드입니다.
+    - [boj2979](./2_1주차/boj2979.cpp) // 1-C
+  - [boj10988](./2_1주차/boj10988.cpp) // 1-D
+  - [boj1159](./2_1주차/boj1159.cpp) // 1-E
+    - 참고삼아, 아스키코드로 A는 65 , a는 97에 대응된다. 알파벳은 26개이다.
+  - [boj11655](./2_1주차/boj11655.cpp) // 1-F
+    - `getline(cin, s);`
+  - [boj9996](./2_1주차/boj9996.cpp) // 1-G
+    - 흠... 문제를 정확히 파악 못해서 왜맞틀만 반복하고 못 풀었음
+    - string parsing 하는 것을 외우자
+      ```c++
+      int pos = pattern.find("*");
+      string pre, suf;
+      pre = pattern.substr(0,pos); // 구간 자르기 (begin_pos, end_pos)
+      suf = pattern.substr(pos+1); // pos+1 하나의 인자만을 넘겨준 상황에선 pattern 문자열의 끝까지 자르게 된다.
+      ```
+  - [boj2559](./2_1주차/boj2559.cpp)
