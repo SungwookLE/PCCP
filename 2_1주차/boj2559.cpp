@@ -29,9 +29,27 @@ int main(){
 
     cout << answer << "\n";
 
-    
-
-
-
     return 0;
+}
+
+
+void usingPsum(){
+    int N, K;
+    cin >> N >> K;
+
+    vector<int> psum(N+1, 0);
+    int answer = -10000004;
+
+    int temp;
+    for(int i = 1 ; i <= N ; ++i){
+        cin >> temp; 
+        psum[i] = psum[i-1] + temp;
+    }
+
+
+    for(int i = K ; i <= N; ++i){
+        answer = max(answer, psum[i] - psum[i-K]);
+    }
+
+    cout << answer << endl;
 }
