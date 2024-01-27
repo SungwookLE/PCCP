@@ -37,8 +37,8 @@ int main()
     {
         cin >> ss;
         int number = atoi(ss.c_str()); 
-        // 문자라면,
-        if (number == 0) 
+        
+        if (number == 0)  // 문자라면,
             cout << pockets1[ss] << "\n";
         else
             cout << pockets2[number] << "\n";
