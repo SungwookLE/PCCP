@@ -15,16 +15,30 @@ int main()
     maze = vector<vector<int>>(N, vector<int>(M, 0));
     searched = vector<vector<int>>(N, vector<int>(M, 0));
 
+    /* 1. 이렇게 받거나, 근데 꼭 bufferflush가 필요함
     string s;
-    getline(cin, s); // bufferflush, 이거 안해주면 쓰레기값이 하나 들어온다.. 
+    getline(cin, s); // bufferflush, 이거 안해주면 쓰레기값이 하나 들어온다..
     for (int i = 0; i < N; ++i)
     {
         getline(cin, s);
         for (int j = 0; j < M; ++j)
         {
-            maze[i][j] = s[j]-'0'; // 문자'1'과 숫자1은 다르다. 문자'1'은 아스키코드로 49이다. 1이 아니다.
+            maze[i][j] = s[j] - '0'; // 문자'1'과 숫자1은 다르다. 문자'1'은 아스키코드로 49이다. 1이 아니다.
         }
     }
+    */
+
+    // 2. 이렇게 받거나
+    string s;
+    for (int i = 0; i < N; ++i)
+    {
+        cin >> s;
+        for (int j = 0; j < M; ++j)
+        {
+            maze[i][j] = s[j] - '0'; // 문자'1'과 숫자1은 다르다. 문자'1'은 아스키코드로 49이다. 1이 아니다.
+        }
+    }
+
 
     candidates.push({0, 0}); // start
     searched[0][0] = 1;
