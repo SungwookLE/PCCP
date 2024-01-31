@@ -37,8 +37,8 @@ int main()
     for (int i = 0; i < T; ++i)
     {
         cin >> M >> N >> K;
-        farm = vector<vector<int>>(M, vector<int>(N,0));
-        visited = vector<vector<int>>(M, vector<int>(N,0));
+        farm = vector<vector<int>>(M, vector<int>(N, 0));
+        visited = vector<vector<int>>(M, vector<int>(N, 0));
 
         int a, b;
         for (int kk = 0; kk < K; ++kk)

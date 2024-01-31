@@ -39,7 +39,6 @@ int main()
         }
     }
 
-
     candidates.push({0, 0}); // start
     searched[0][0] = 1;
 
