@@ -26,7 +26,7 @@ int dfs(int i, int j, int count)
         }
     }
 
-    return count;
+    return count; // 최종 바깥으로 나가는 출력임
 }
 
 int main()
