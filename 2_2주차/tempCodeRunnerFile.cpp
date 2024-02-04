@@ -1,5 +1,8 @@
-   // ll temp = N;
-    // while (temp%10==0){
-    //     temp /= temp;
-    //     cnt ++;
-    // }
+
+    // // for(auto v : virus){
+    // //     int ret = 0;
+
+
+    // //     dfs(v.first, v.second, ret);
+    // //     cout << N*M - ret - Walls << endl;
+    // // }
