@@ -10,7 +10,8 @@ string prevTime = "00:00";
 
 int changeToInt(string a)
 {
-    return atoi(a.substr(0, 2).c_str()) * 60 + atoi(a.substr(3, 2).c_str());
+    return stoi(a.substr(0, 2)) * 60 + stoi(a.substr(3, 2));
+    // atoi(a.substr(0,2).c_str()) * 60 + atoi(a.substr(3,2).c_str());
 }
 
 string print(int a)

@@ -1,5 +1,5 @@
-    // if(count == 4){
-        //     temp.pop();
-        //     temp.pop();
-        //     temp.pop();
-        // }
+   // ll temp = N;
+    // while (temp%10==0){
+    //     temp /= temp;
+    //     cnt ++;
+    // }
