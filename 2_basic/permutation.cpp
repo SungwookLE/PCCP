@@ -18,7 +18,7 @@ int main(){
 
     }
 
-    /*
+    /* 아래 코드가 더 낫겟네
     
     do{
         for(auto aa : a)
