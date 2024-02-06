@@ -24,7 +24,7 @@ int main()
     cin >> N >> M;
     adj = vector<vector<int>>(N + 1);
     visited = vector<int>(N+1, 0);
-
+ 
     int child, parent;
     for (int i = 0; i < M; ++i)
     {
