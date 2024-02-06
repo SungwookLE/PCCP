@@ -45,11 +45,11 @@
   - `std::next_permutation(begin(), end()) 오름차순으로 만들어줌`
   - STL을 쓸 때, 배열은 정렬이 되어 있어야 함 (오름차순에 맞게)
   - `std::prev_permutation(begin(), end()) 내림차순으로 만들어줌`
-  - [직접 구현은 재귀함수로 구현](./2_basic/permutation_self.cpp)
+  - [직접 구현은 재귀함수로 구현](./2_0기본/permutation_self.cpp)
 
 - 조합(combination)은 순서가 상관없는 나열
-  - [combination 직접구현: 외워라 무조건](./2_basic/combination_self.cpp)
-  - [3개를 뽑는 것이면 for문 3개로도 풀 수 있다](./2_basic/combination_for.cpp)
+  - [combination 직접구현: 외워라 무조건](./2_0기본/combination_self.cpp)
+  - [3개를 뽑는 것이면 for문 3개로도 풀 수 있다](./2_0기본/combination_for.cpp)
 
 3. split() 함수
 
@@ -91,8 +91,8 @@
 5. 중복된 요소 제거
 
 - `{1,1,2,2,3,3}`
-- 가장 간단하게 구현하는 방법은 map 구조를 이용해서 map[1] = true; [이런식으로](./2_basic/map_for_unique.cpp)
-- STL에 구현되어 있는 함수 [`unique()`](./2_basic/unique.cpp)
+- 가장 간단하게 구현하는 방법은 map 구조를 이용해서 map[1] = true; [이런식으로](./2_0기본/map_for_unique.cpp)
+- STL에 구현되어 있는 함수 [`unique()`](./2_0기본/unique.cpp)
   - `V.erase(unique(V.begin(), V.end()), V.end());`
 
 ### 2-2. 1주차: 시간복잡도, 빅오표기법, 공간복잡도, 누적합, 구현
