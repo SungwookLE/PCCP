@@ -692,30 +692,53 @@ while(q.size()){
 
 - 백준풀기(3주차)
 
-    - [boj15686](./2_3주차/boj15686.cpp) // 3-A
-      - 잘 푼것 같은데 , 시간초과 문제가 계속 발생해서.. 고민을 했다.
-      - visited 체크가 안되어 있던 문제도 있는고(그래도 시간초과는 여전히),
-      - 한번 더 생각해보니 순서는 상관없이 치킨집M개를 뽑는건데 나는 순서 상관있이 3개를 뽑아서, 시간초과 문제가 발생했던 것임
-        - 순서는 상관없이 3개만 뽑으면 되는 것이니까, `for (i =start+1;;)` 구문을 넣어준 것임
-    ```c++
-    void go(int start, vector<vector<int>> v){
-        if (ans == M) return;
-        if (v.size() == M){
-            int dist = get_cityDistance(houses, v);
-            ans = min(dist, ans);
-            return;
-        }
-        for(int i = start+1 ; i < chickens.size(); ++i){ // 와 이거.. 순서 상관없으니까 조건 따져야함
-            if (visited[chickens[i][0]][chickens[i][1]] == 0){
-                visited[chickens[i][0]][chickens[i][1]] = 1;
-                v.push_back(chickens[i]);
-                go(i, v);
-                v.pop_back();
-                visited[chickens[i][0]][chickens[i][1]] = 0;
-            }
-        }
-        return;
-    }
-    ```
+  - [boj15686](./2_3주차/boj15686.cpp) // 3-A
+    - 잘 푼것 같은데 , 시간초과 문제가 계속 발생해서.. 고민을 했다.
+    - visited 체크가 안되어 있던 문제도 있는고(그래도 시간초과는 여전히),
+    - 한번 더 생각해보니 순서는 상관없이 치킨집M개를 뽑는건데 나는 순서 상관있이 3개를 뽑아서, 시간초과 문제가 발생했던 것임
+      - 순서는 상관없이 3개만 뽑으면 되는 것이니까, `for (i =start+1;;)` 구문을 넣어준 것임
+  ```c++
+  void go(int start, vector<vector<int>> v){
+      if (ans == M) return;
+      if (v.size() == M){
+          int dist = get_cityDistance(houses, v);
+          ans = min(dist, ans);
+          return;
+      }
+      for(int i = start+1 ; i < chickens.size(); ++i){ // 와 이거.. 순서 상관없으니까 조건 따져야함
+          if (visited[chickens[i][0]][chickens[i][1]] == 0){
+              visited[chickens[i][0]][chickens[i][1]] = 1;
+              v.push_back(chickens[i]);
+              go(i, v);
+              v.pop_back();
+              visited[chickens[i][0]][chickens[i][1]] = 0;
+          }
+      }
+      return;
+  }
+  ```
 
+  - [boj2589](./2_3주차/boj2589.cpp) // 3-B 
+    - 두번째 트라이에 성공함
+      - 생각 잘하고 풀어야 겠네.. 만약 Lands가 5개라면 1번 방식은 5C2 = 10 번의 BFS를 풀어야 하지만 2번 방식은 5번의 BFS 를 푸는 것이라 이득이다.
+    1. 시간초과를 받았던 첫번째 트라이
+      - Lands에서 NC2 콤비네이션을 뽑아서, 시작지점과 골지점으로 한 다음에 모든 시작과 골에 대해 BFS로 최단거리를 저장한다음, 최대값을 출렸했다.
+    2. 두번째 트라이
+      - 모든 Lands를 시작점으로 하여 goal 지점 없이 candidates가 소진될 때 까지 BFS를 돌렸고, 맵 정보에서 거리가 최대인 정보를 저장한다음, 모든 Ladns 시작점에 대해서 거리 최대값을 출력했다.
+
+  - [boj16234](./2_3주차/boj16234.cpp) // 3-C
+    - 와 1시간 반 정도 붙잡고 풀어서 풀긴 풀었다.
+      - ..내가 이런 문제를 실전에서 만나도 끈기 있게 풀어낼수있을까? ㅎㅎ;;
+      - 문제는 connect component 과 dfs 를 섞었다.
+      1. 첫번째 시도
+        - connected component 를 못 떠올리고, 국경이 열리는 부분을 체크하려고 하였다. 오류 투성이 ㅠㅠ
+        - 당연히 틀렸음
+      2. 두번째 시도
+        - 국경이 열리는 그룹의 체크는 connected component (dfs)로 풀어야겠구나를 떠올림
+        - 그러나 그룹 체크와, 평균 계산 각각을 2개의 dfs로 했기 때문에 시간초과
+      3. 세번째 시도
+        - 두번째 시도는 각각 설계한 dfs를 하나로 합치는 것을 하였다.
+        - 성공...
+
+  - // 3-D 부터 불기 (2/9)
 
