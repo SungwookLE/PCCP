@@ -1,56 +1,41 @@
-#include <bits/stdc++.h>
+#include <vector>
+#include <iostream>
+#include <queue>
 
 using namespace std;
 
 int N;
 vector<int> SCV;
 vector<vector<int>> attack = {{9,3,1}, {9,1,3}, {3,9,1}, {3,1,9}, {1,9,3}, {1,3,9}};
+int visited[61][61][61]={0,};
 queue<vector<int>> candidates;
 
 int main(){
     cin >> N;
     SCV = vector<int>(3,0);
+    for(int i = 0 ; i < N ; ++i) cin >>SCV[i];
 
-    for(int i = 0 ; i < N ; ++i) cin >> SCV[i];
-
-    SCV.push_back(0);
     candidates.push(SCV);
+    visited[SCV[0]][SCV[1]][SCV[2]] = 1;
 
     while(!candidates.empty()){
-
-
         vector<int> now = candidates.front();
         candidates.pop();
 
-        bool ret = true;
-        cout << now[3] << ": " ;
-        for(int i = 0 ; i < 3 ; ++i){
-            cout << now[i] << " ";
-            if (now[i]>0) ret= false;
-        }
-        cout << endl;
-
-        if (ret){
-            cout << now[3];
-            break;
-        }
-
+        if (now[0] == 0 && now[1] == 0 && now[2] == 0) break;
 
         for(auto at : attack){
-            vector<int> tmp;
-            for(int i = 0 ; i < 3 ; ++i)
-                tmp.push_back(now[i] - at[i]);
-            tmp.push_back(now[3]+1);
-            candidates.push(tmp);
+
+            int p = max(0, now[0] - at[0]);
+            int q = max(0, now[1] - at[1]);
+            int r = max(0, now[2] - at[2]);
+
+            if (visited[p][q][r] != 0) continue;            
+            visited[p][q][r] = visited[now[0]][now[1]][now[2]] + 1;
+            candidates.push({p,q,r});
         }
-
-
     }
-
-
-
-
-
+    cout << visited[0][0][0] -1 ;
 
     return 0;
 }
