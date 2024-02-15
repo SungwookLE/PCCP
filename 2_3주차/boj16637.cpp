@@ -31,14 +31,6 @@ void go(int here, int _num){
     }
 }
 
-/*
-9
-3+8*7-9*2
-
-19
-1-9-1-9-1-9-1-9-1-9
-*/
-
 int main(){
     cin >> N;
     cin >> s;
