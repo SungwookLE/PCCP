@@ -4,25 +4,26 @@ using namespace std;
 
 int R, C;
 vector<vector<char>> board;
-map<char, int> mp;
-vector<vector<int>> delta = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+vector<int> visited;
+vector<vector<int>> delta = {{-1, 0},{0, 1}, {1, 0}, {0, -1} };
 int mx = 0;
 
-void dfs(vector<int> here,map<char, int>& history, int ans)
+void dfs(vector<int> here,  int ans)
 {   
-    if (mx < ans) mx = ans;
+    mx = max(ans, mx);
 
-    for (auto d : delta)
+    for (int i = 0 ; i < 4; ++i)
     {
-        int next_i = here[0] + d[0];
-        int next_j = here[1] + d[1];
+        int next_i = here[0] + delta[i][0];
+        int next_j = here[1] + delta[i][1];
 
         if (next_i < 0 || next_j < 0 || next_i >= R || next_j >= C) continue;
+        int next_ = (int)board[next_i][next_j] - 'A';
 
-        if (history[board[next_i][next_j]] == 0){
-            history[board[next_i][next_j]] = 1;
-            dfs({next_i, next_j}, history, ans+1);
-            history[board[next_i][next_j]] = 0;
+        if (visited[next_] == 0){
+            visited[next_] = 1;
+            dfs({next_i, next_j}, ans+1);
+            visited[next_] = 0;
         }
     }
 
@@ -37,9 +38,7 @@ int main()
 
     cin >> R >> C;
     board = vector<vector<char>>(R, vector<char>(C));
-    
-    string alphabet = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
-    for(int i = 0 ; i < alphabet.size() ; ++i) mp[alphabet[i]] = 0;
+    visited = vector<int>(26,0);
 
     for (int i = 0; i < R; ++i)
     {
@@ -49,8 +48,8 @@ int main()
             board[i][j] = s[j];
     }
 
-    mp[board[0][0]] = 1;
-    dfs({0, 0}, mp, 1);
+    visited[(int)board[0][0]-'A'] = 1;
+    dfs({0, 0}, 1);
 
     cout << mx ;
 
