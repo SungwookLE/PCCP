@@ -68,17 +68,17 @@ int main()
 
     int root = 1;
     
-    cout << "1.전위방문\n";
+    cout << "1.전위방문(preOrder)\n";
     preOrder(root);
     visited = vector<int>(10, 0);
     cout << endl;
 
-    cout << "2.후위방문\n";
+    cout << "2.후위방문(postOrder)\n";
     postOrder(root);
     visited = vector<int>(10, 0);
     cout << endl;
 
-    cout << "3.중위방문\n";
+    cout << "3.중위방문(inOrder)\n";
     inOrder(root);
     visited = vector<int>(10, 0);
     cout << endl;
