@@ -20,15 +20,16 @@ void dfs2(int here){
 
 void dfs(int here, int sum, vector<int> ret){
     
-    cout << here << " " ;
-
+    cout << here << " ";
     for(auto v: graph[here]){
         if (visited[v] == 0){
-            visited[v] =1 ;
-            sum += people[v];
-            ret.push_back(here);
+            visited[v] = 1;
+            ret.push_back(v);
+
             dfs(v, sum, ret);
-            visited[v] -=1 ;
+            cout << endl << "-1" << endl;
+            visited[v] =0 ;
+            ret.pop_back();
         } 
     }
 
@@ -61,8 +62,11 @@ int main(){
         }
     }
 
-    for(int i = 1 ; i <= N ; ++i)
-        dfs(i, 0, {});
+    for(int i = 1 ; i <= N ; ++i){
+        visited[i] = 1;
+        dfs(i, 0, {i});
+        visited[i] = 0;
+    }
 
 
     return 0;
