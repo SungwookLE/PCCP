@@ -935,5 +935,39 @@ while(q.size()){
       
 
   - [boj17471](./2_4주차/boj17471.cpp) // 4-C
-    - 강의 보고 다시 풀기 ㅠㅠ.. 하 이거 어케하는건지 트라이하다 기본도 헷갈리네? ㅋㅋ
-    - // (2/23)
+    - 혼자 못 풀었음.. 강의 보고 다시 풀기 ㅠㅠ.
+
+    1. 헷갈린 것 (int dfs())
+    ```c++
+
+    // dfs 호출 횟수를 리턴하는
+    int dfs(int here)
+    {
+        int ret = 1; // 기저 개수
+        visited[here] = 1; 
+
+        for (int neighbor : adj[here])
+            if (visited[neighbor] == 0) ret += dfs(neighbor);
+        return ret;
+    }
+    
+    // 누적합을 리턴하는 dfs
+    int dfs(int here, int id){
+      visited[here] = 1;
+      int ret = people[here];
+
+      for(auto a : adj[here]){
+          if (visited[a] == 0 && group[a] == id){
+              ret+=dfs(a, id);
+          }
+      }
+
+      return ret;
+    }
+    ```
+
+    2. 노드마다 색칠을 먼저하고, 두 개 그룹으로 쪼개지는 가? 그 다음에 최소값을 갱신하는 문제임
+
+
+  // (2/24, 여기부터 하기)
+  - [boj1987](./2_4주차/boj1987.cpp) // 4-D
