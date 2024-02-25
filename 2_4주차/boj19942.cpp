@@ -60,7 +60,7 @@ int main()
                 {
                     if (i & (1 << j))
                     {
-                        // ret += to_string(j+1); << 오답
+                        // ret += to_string(j+1); //<< 오답
                         ret += (char(j + 1) + '0'); // << 이렇게 해주니 비로소 정답
                     }
                 }
@@ -73,7 +73,7 @@ int main()
                 {
                     if (i & (1 << j))
                     {
-                        // ret += to_string(j+1); << 오답
+                        // ret += to_string(j+1); // << 오답
                         ret += (char(j + 1) + '0'); // << 이렇게 해주니 비로소 정답
                     }
                 }
@@ -88,10 +88,12 @@ int main()
     {
         cout << min_C << "\n";
         sort(ans.begin(), ans.end());
-        for (char s : ans[0])
+        for (auto s : ans[0])
         {
-            cout << int(s - '0') << " ";
+            cout << int(s-'0') << " ";
         }
     }
+
+
     return 0;
 }
