@@ -14,13 +14,8 @@ int main(){
     int num;
     for(int i = 0 ; i < N ; ++i){
         cin >> num;
-
         if (num > mx) mx = num;
-
         if (num < mn) mn = num;
-
-
-
     }
     cout << mn << " " << mx ;
 
