@@ -1109,6 +1109,7 @@ while(q.size()){
       }
       ```
     5. 정렬의 결과로 정렬된 `value`가 아니라, `idx`를 알고 싶을 때 방식은 여러 가지 있겠지만, 이럴 때 `lower_bound`를 활용하면 편리하다.
+      - [내가 naive하게 푼 코드](./2_히든퀘스트1/boj18870.cpp) , [stl을 이용한 나이스한 코드](./2_히든퀘스트1/boj18870_더나은코드.cpp)
       - 오름차순 정렬이기 때문에 lower_bound를 쓴 것임
       - lower bound는 주소값을 리턴해줌 따라서 시작 주소와 뺴기를 통해서 몇번째 position 인지 알 수 있는 것임
       ```c++
@@ -1117,5 +1118,21 @@ while(q.size()){
       // 오름차순 정렬이기 때문에 lower_bound를 쓴 것임
       // lower bound는 주소값을 리턴해줌 따라서 시작 주소와 뺴기를 통해서 몇번째 position 인지 알 수 있는 것임
       ```
+    6. sort 정렬의 compare 사용:
+      - `sort(v.begin(), v.end(), less<int>());`
+    7. map 에서의  compare 사용:
+      - `map<string, int, greater<string>> m;`
+    8. map 에서의 키를 조회하기:
+      - `if(m.count(n)) cout << m[n] << " ";`
+    9. `boj11478` 문제는 정답코드를 참고하였음 (너무 졸려서 ㅠㅠ)
+      - 부분 문자열을 획득하기 위해 처음 구상한 것은 `combination` 함수 -> 시간초과 ㅠ
+      - 부분 문자열은 구태여 콤비네이션 까지 필요없고 다음과 같은 방식으로도 구할 수 있었음
+        ```c++
+        for(int i = 0 ; i < S.size(); ++i){
+          for(int j = 1; j <= S.size()-i; ++j){
+            string part = S.substr(i, j);
+            ret.insert(part);
+          }
+        }
+        ```
 
-  
