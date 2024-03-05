@@ -4,9 +4,11 @@ using namespace std;
 
 int N, M;
 int main(){
+    cin.tie(NULL);
+    cout.tie(NULL);
+
     cin >> N >> M;
-
-
+    
     vector<string> names = vector<string>(N);
     map<string, int> m;
 
