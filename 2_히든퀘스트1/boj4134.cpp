@@ -22,7 +22,6 @@ int main(){
                 ret = 2;
                 break;
             }
-            
             check =true;
             for(long long div = 2; div*div <= n; ++div){
                 if (n%div==0){
@@ -30,7 +29,6 @@ int main(){
                     break;
                 }
             }
-
             if(check){
                 ret = n;
                 break;
