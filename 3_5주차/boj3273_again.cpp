@@ -11,7 +11,7 @@ int main(){
 
     sort(A.begin(), A.end());
 
-    auto s = A.begin();
+    vector<int>::iterator s = A.begin();
     auto e = A.end()-1;
 
     int ret = 0;
