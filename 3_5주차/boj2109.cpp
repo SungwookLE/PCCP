@@ -17,7 +17,6 @@ int main(){
     long long ret = 0;
 
     priority_queue<int, vector<int> , greater<int>> pq; //top 에 제일 작은 값이 올라오게끔 priority_queue
-
     for(int i =0; i < n; ++i){
 
         pq.push(S[i].second);
