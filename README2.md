@@ -1421,9 +1421,24 @@ while(q.size()){
     - 쉬운문제인데도 못 풀었다. 다시 풀기
 
 
-  - (여기까지, 3/20)
+  - [boj15683](./3_5주차/boj15683.cpp) // 5-X
+    - 혼자 못 풀었음.. 
+    - cctv를 회전시키면서 감시영역 체크하는 것 까지는 구현했는데, 이를 어떻게 재귀호출할지 구현을 못하였음
+    - 생각 틀이, 재귀호출 불가능한 구조로 짜놓아서 재귀함수를 짜는데 어려움이 있었다.
+    - `for i=0->4` 까지의 방향에 대해 모든  cctv를 돌리고 원복하고 하면서 모든 cctv에 대해서 풀면됐던 건데...
+      ```c++
+      for(int direction = 0; direction < 4; ++direction){
+        vector<pair<int, int>> changes = rotate_camera(Cameras[here], ROOM[Cameras[here].first][Cameras[here].second], direction);
+        dfs(here+1);
+        for(auto b: changes) ROOM[b.first][b.second] = 0;
+      }
+      ```
+    - 강의
+      - `[dir+1]%4` 를 통해서 `dir[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};` for문으로 순회할수 있다.
 
-  - `5-X:15683`
+
+    - 다음에 다시 풀기
+
   - `5-Y:17822`
   - `5-Z:2170`
 
