@@ -1435,13 +1435,25 @@ while(q.size()){
       ```
     - 강의
       - `[dir+1]%4` 를 통해서 `dir[4][2] = {{-1,0},{0,1},{1,0},{0,-1}};` for문으로 순회할수 있다.
-
-
     - 다음에 다시 풀기
 
-  - `5-Y:17822`
-  - `5-Z:2170`
+  - [boj17822](./3_5주차/boj17822.cpp) // 5-Y
+    - 혼자 풀었음
+    - 평균을 구할때 `double` 로 처리를 해주어야 했음 
+    - 문제가 좀 설명이 부족한 것 같은데..,
+    - `rotate`를 이용하니 편리했음
+      ```c++
+      void rotate_cw(vector<int>& a) rotate(a.begin(), a.end()-1, a.end());
+      void rotate_ccw(vector<int>& a) rotate(a.begin(), a.begin()+1, a.end());
+      ```
 
+  - [boj2170](./3_5주차/boj2170.cpp) // 5-Z
+    - 혼자 풀었음
+  
+
+### 2-9. 6주차 이분탐색(Binary Search)과 LIS(최대증가부분수열)
+
+  
 
 
 
