@@ -11,7 +11,7 @@ bool check(int mid){
     int ret = 0;
     for(int i =0 ; i < N ; ++i){
 
-        if (Money[i]>mid) return 0;
+        if (Money[i]>mid) return 0; // 반복인출이 안되는 거였구나 ㅠㅠ.. ㅅㅂ
 
         if (ret-Money[i]>=0){
             ret -= Money[i];

@@ -1,134 +1,222 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <unordered_map>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-void getRead(const string fname, vector<vector<string>>& m, pair<int, int>& s){
+#define threshold 3
+#define distance_object_to_line 20
 
-    ifstream openFile(fname);
-    if (openFile.is_open()){
-        string line, tok;
-        int row = 0;
-        while(getline(openFile, line)){
-            m.push_back(vector<string>());
-            istringstream iss(line);
-            int col = 0;
-            while (( iss >> tok) ) {
-                m[row].push_back(tok);
-                if (tok == "*") s = {row, col};
-                col++;
-            }
-            row++;
-        }
-    }
+const int width = 300;
+const int height = 300;
+const double jump = 5;
+const int start_x = 0;
+const int start_y = 0;
+const int des_x = 280;
+const int des_y = 263;
 
-    return;
-}
-
-void printMap(const vector<vector<string>> m){
-
-    for(auto row : m){
-        for(auto col : row) cout << col << " ";
-        cout << endl;
-    }
-
-}
-
-vector<vector<string>> space;
-pair<int, int> start, goal;
-vector<vector<int>> delta = {{-1, 0}, {0,-1}, {0,1}};
-vector<string> delta_str = {"S", "L", "R"};
-
-class CustomVisited{
-
-    private:
-        // Define a custom hasher for tuple<int, int, string>
-        struct KeyHasher {
-            std::size_t operator()(const std::tuple<int, int, std::string>& k) const {
-                // Compute hash based on the hash values of individual tuple elements
-                auto hash1 = std::hash<int>{}(std::get<0>(k));
-                auto hash2 = std::hash<int>{}(std::get<1>(k));
-                auto hash3 = std::hash<std::string>{}(std::get<2>(k));
-                return hash1 ^ hash2 ^ hash3; // Combining hashes using XOR
-            }
-        };
-
-        // Define a custom equality comparator for tuple<int, int, string>
-        struct KeyEquals {
-            bool operator()(const std::tuple<int, int, std::string>& lhs, const std::tuple<int, int, std::string>& rhs) const {
-                return lhs == rhs; // Simply compare tuples for equality
-            }
-        };
-
-    public:
-        unordered_map<tuple<int,int,string>, int, KeyHasher, KeyEquals> v;
-        void print(pair<int, int> goal, vector<vector<string>> space){
-
-            for(int i = 0 ; i < space.size(); ++i){
-                for(int j =0 ; j < space[0].size(); ++j){
-                    int mn = 987654321;
-                    for(auto d: delta_str){
-
-                        if (v[{i,j,d}] != 0){
-                            mn = min(mn, v[{i,j,d}]);
-                        }
-
-                    }
-                    if (mn != 987654321) cout << mn << "\t";
-                    else cout << "\t";
-                }
-                cout << endl;
-            }
-
-        }
+struct Node {
+    int x = 0;
+    int y = 0;
+    Node* parent = nullptr;
 };
 
-CustomVisited visited;
+vector<Node*> nodeList;
+vector<pair<int, int>> objectList;
 
-void rrt(pair<int, int> n, pair<int, int> g){
+double getRandomPoint(int size){
 
-    if ( n.first == g.first && n.second == g.second ){
-        cout << "REACH" << endl;
-        return;
-    }
+    random_device random_device;
+    mt19937 engine(random_device());
+    uniform_int_distribution<int> distribution(0.0, size);
 
-    for(int i =0 ; i < delta.size(); ++i){
+    return distribution(engine);
+}
 
-        int next_i = n.first + delta[i][0];
-        int next_j = n.second+ delta[i][1];
+double getDistance(Node* A, Node* B){
+    return sqrt(pow(A->x - B->x, 2) + pow(A->y - B->y, 2));
+}
 
-        if (next_i < 0 || next_j < 0 || next_i >= space.size() || next_j >= space[0].size()) continue;
-        if (space[next_i][next_j] == "#") continue;
-        if (visited.v[make_tuple(next_i, next_j, delta_str[i])] != 0) continue;
+double getDistance(pair<int, int>A, pair<int, int> B){
+    return sqrt(pow(A.first - B.first, 2) + pow(A.second - B.second, 2));
+}
 
-        int mn = 987654321;
-        for(auto str: delta_str){
-            if (visited.v[{n.first, n.second, str}] != 0){
-                if (mn > visited.v[{n.first, n.second, str}])
-                    mn = visited.v[{n.first, n.second, str}];
+double getAngle(Node* Parent, Node* Child){
+    return atan2(Child->y - Parent->y, Child->x - Parent->x);
+}
+
+bool Sampling(Node* sample, pair<double, double> randomPoint){
+
+    double dist = 0.0;
+    double angle= 0.0;
+    double min_dist = 10*(width + height);
+
+    int i = 0;
+    int index = 0;
+    sample->x = randomPoint.first;
+    sample->y = randomPoint.second;
+
+    for(auto node: nodeList){
+        dist = getDistance(node, sample);
+
+        if (dist < min_dist){
+            min_dist = dist;
+            index = i;
+            angle = getAngle(node, sample);
+
+            if (dist == 0){
+                return false;
             }
         }
-        visited.v[{next_i, next_j, delta_str[i]}] = mn+1;
+        i++;
+    }
+    sample->x = nodeList[index]->x + jump * cos(angle);
+    sample->y = nodeList[index]->y + jump * sin(angle);
+    sample->parent = nodeList[index];
 
-        rrt({next_i, next_j}, g);
+    return true;
+}
+
+bool collision(Node* sample){
+
+    Node* parent = sample->parent;
+    double tmpDist;
+    double lineGrad;
+    double interceptY;
+    double tmpX, tmpY;
+
+    if ((sample->x - parent->x) != 0)
+        lineGrad = (sample->y - parent->y) / (sample->x - parent->x);
+    else lineGrad = 0;
+
+    interceptY = (parent->y - lineGrad * parent->x);
+    if (sample->x > width || sample->x < 0) return true;
+    else if (sample->y > height || sample->y < 0) return true;
+    else if ((sample->x - parent->x) == 0){
+
+        for(auto obj : objectList){
+
+            if (parent->y < sample->y){
+                for(int y1 = parent->y; y1 <= sample->y; ++y1){
+
+                    tmpX = parent->x;
+                    tmpY = y1;
+                    tmpDist = getDistance(obj, {tmpX, tmpY});
+                    if (tmpDist < distance_object_to_line){
+                        return true;
+                    }
+                }
+            }
+            else{
+                for(int y1 = parent->y; y1 >= sample->y; --y1){
+
+                    tmpX = parent->x;
+                    tmpY = y1;
+                    tmpDist = getDistance(obj, {tmpX, tmpY});
+                    if (tmpDist < distance_object_to_line){
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    else{
+
+        for(auto obj: objectList){
+
+            if (sample->x > parent-> x){
+
+                for(int x1 = parent->x; x1 <= sample->x ; ++x1){
+
+                    tmpX = x1;
+                    tmpY = lineGrad * tmpX + interceptY;
+
+                    tmpDist = getDistance(obj, {tmpX, tmpY});
+                    if (tmpDist < distance_object_to_line) return true;
+                }
+            }
+            else{
+                for(int x1 = parent->x ; x1 >= sample->x; --x1){
+                    tmpX = x1;
+                    tmpY = lineGrad * tmpX + interceptY;
+
+                    tmpDist = getDistance(obj, {tmpX, tmpY});
+                    if (tmpDist < distance_object_to_line) return true;
+                }
+            }
+        }
     }
 
-    return;
+    return false;
 }
 
 int main(){
+    ifstream fobject("object.txt"); // 장애물
+    ofstream fsample("sampling.txt"); // 생성된 샘플
+    ofstream ftree("tree.txt"); // 찾은 경로
 
-    getRead("map.txt", space, start);
-    goal = {0, 0};
-    printMap(space);
-    visited.v[{start.first, start.second, "S"}] = 1;
-    rrt(start, goal);
-    visited.print(goal, space);
+    Node* here = nullptr;
+    double dist = 0;
+
+    bool pathfound = false;
+    Node* desNode = new Node;
+
+    desNode->x = des_x;
+    desNode->y = des_y;
+
+    Node* rootNode = new Node;
+    rootNode->x = start_x;
+    rootNode->y = start_y;
+
+    nodeList.push_back(rootNode);
 
 
-    return 0;
+    string line;
+    while(getline(fobject, line)){
+        istringstream iss(line);
+
+        string X, Y;
+        iss >> X >> Y;
+
+        objectList.push_back({stoi(X), stoi(Y)});
+        cout << X << ", " << Y << endl;
+    }
+    
+    //////// 길찾기
+    while(pathfound == false){
+
+        here = new Node;
+
+        auto distribution_X = getRandomPoint(width);
+        auto distribution_Y = getRandomPoint(height);
+
+
+        if(!Sampling(here, {distribution_X, distribution_Y})){
+            delete here;    
+            continue;
+        }
+        if(collision(here)){
+            delete here;
+            continue;
+        } 
+        nodeList.push_back(here);
+        fsample << here->x << ", " << here->y << "\n";
+
+        dist = getDistance(desNode, here);
+        if(dist < 3) pathfound = true;
+    }
+    fsample.close();
+    cout << "found!: " << nodeList.size() << endl;
+
+    while(pathfound == true){
+
+        if (here == nullptr) break;
+        Node* tmpNode = here->parent;
+
+        ftree << here->x << "," << here->y << "\n";
+        dist = getDistance(here, rootNode);
+        if (dist < 3) break;
+
+        here = here->parent;
+    }
+
+    ftree.close();
 }
