@@ -10,12 +10,17 @@ const int height = 300;
 const double jump = 5;
 const int start_x = 0;
 const int start_y = 0;
-const int des_x = 280;
-const int des_y = 263;
+const double start_hdAng = 0;
+
+const int des_x = 250;
+const int des_y = 250;
+const double des_hdAng = 0;
+
 
 struct Node {
-    int x = 0;
-    int y = 0;
+    double x = 0;
+    double y = 0;
+    double hdAng =0;
     Node* parent = nullptr;
 };
 
@@ -27,6 +32,15 @@ double getRandomPoint(int size){
     random_device random_device;
     mt19937 engine(random_device());
     uniform_int_distribution<int> distribution(0.0, size);
+
+    return distribution(engine);
+}
+
+double getRandomAng(){
+
+    random_device random_device;
+    mt19937 engine(random_device());
+    normal_distribution<double> distribution(0, M_PI_2);
 
     return distribution(engine);
 }
@@ -43,40 +57,48 @@ double getAngle(Node* Parent, Node* Child){
     return atan2(Child->y - Parent->y, Child->x - Parent->x);
 }
 
-bool Sampling(Node* sample, pair<double, double> randomPoint){
+bool Sampling(Node* sample, tuple<double, double, double> randomPoint){
 
     double dist = 0.0;
-    double angle= 0.0;
+    double towardAngle= M_PI_2, diffAngle = 0.0;
     double min_dist = 10*(width + height);
 
-    int i = 0;
+    int i = -1;
     int index = 0;
-    sample->x = randomPoint.first;
-    sample->y = randomPoint.second;
+    sample->x = get<0>(randomPoint);
+    sample->y = get<1>(randomPoint);
+
+    sample->hdAng = get<2>(randomPoint);
+    if(sample->hdAng > M_PI)  sample->hdAng = sample->hdAng - M_PI*2;
+    else if (sample->hdAng < - M_PI)  sample->hdAng =  sample->hdAng + M_PI*2;
 
     for(auto node: nodeList){
-        dist = getDistance(node, sample);
+        diffAngle = abs(node->hdAng - sample->hdAng);
+        if (diffAngle > M_PI) diffAngle -= M_PI*2;
+        else if (diffAngle < -M_PI) diffAngle += M_PI*2;
+        diffAngle = abs(diffAngle);
+        i++;
+        
+        if (diffAngle > M_PI/10) continue;
 
+        dist = getDistance(node, sample);
+        towardAngle = getAngle(node, sample);
+        
         if (dist < min_dist){
             min_dist = dist;
             index = i;
-            angle = getAngle(node, sample);
-
-            if (dist == 0){
-                return false;
-            }
+            if (dist == 0 && diffAngle < M_PI/100) return false;
         }
-        i++;
     }
-    sample->x = nodeList[index]->x + jump * cos(angle);
-    sample->y = nodeList[index]->y + jump * sin(angle);
+    sample->x = nodeList[index]->x + jump * cos(towardAngle);
+    sample->y = nodeList[index]->y + jump * sin(towardAngle);
+    // sample->hdAng ;
     sample->parent = nodeList[index];
 
     return true;
 }
 
 bool collision(Node* sample){
-
     Node* parent = sample->parent;
     double tmpDist;
     double lineGrad;
@@ -96,7 +118,6 @@ bool collision(Node* sample){
 
             if (parent->y < sample->y){
                 for(int y1 = parent->y; y1 <= sample->y; ++y1){
-
                     tmpX = parent->x;
                     tmpY = y1;
                     tmpDist = getDistance(obj, {tmpX, tmpY});
@@ -107,7 +128,6 @@ bool collision(Node* sample){
             }
             else{
                 for(int y1 = parent->y; y1 >= sample->y; --y1){
-
                     tmpX = parent->x;
                     tmpY = y1;
                     tmpDist = getDistance(obj, {tmpX, tmpY});
@@ -119,13 +139,9 @@ bool collision(Node* sample){
         }
     }
     else{
-
         for(auto obj: objectList){
-
             if (sample->x > parent-> x){
-
                 for(int x1 = parent->x; x1 <= sample->x ; ++x1){
-
                     tmpX = x1;
                     tmpY = lineGrad * tmpX + interceptY;
 
@@ -149,7 +165,7 @@ bool collision(Node* sample){
 }
 
 int main(){
-    ifstream fobject("object.txt"); // 장애물
+    ifstream fobject("object.txt"); // 정적 장애물
     ofstream fsample("sampling.txt"); // 생성된 샘플
     ofstream ftree("tree.txt"); // 찾은 경로
 
@@ -177,19 +193,17 @@ int main(){
         iss >> X >> Y;
 
         objectList.push_back({stoi(X), stoi(Y)});
-        cout << X << ", " << Y << endl;
     }
     
     //////// 길찾기
     while(pathfound == false){
-
         here = new Node;
 
         auto distribution_X = getRandomPoint(width);
         auto distribution_Y = getRandomPoint(height);
+        auto distribution_hdAng = getRandomAng();
 
-
-        if(!Sampling(here, {distribution_X, distribution_Y})){
+        if(!Sampling(here, {distribution_X, distribution_Y, distribution_hdAng})){
             delete here;    
             continue;
         }
@@ -198,23 +212,27 @@ int main(){
             continue;
         } 
         nodeList.push_back(here);
-        fsample << here->x << ", " << here->y << "\n";
+        fsample << here->x << ", " << here->y << ", " << here->hdAng*180.0/M_PI << "\n";
+        cout << here->x << ", " << here->y << ", " << here->hdAng*180.0/M_PI << "\n";
 
         dist = getDistance(desNode, here);
-        if(dist < 3) pathfound = true;
+
+        double diffAngle = abs(here->hdAng - desNode->hdAng);
+        if (diffAngle > M_PI) diffAngle = diffAngle - M_PI*2;
+        else if (diffAngle < -M_PI) diffAngle = diffAngle + M_PI*2;
+
+        if(dist < 3 && abs(diffAngle) <= M_PI/10) pathfound = true;
+
     }
     fsample.close();
-    cout << "found!: " << nodeList.size() << endl;
+    cout << "Found!: " << nodeList.size() << endl;
 
     while(pathfound == true){
 
         if (here == nullptr) break;
         Node* tmpNode = here->parent;
 
-        ftree << here->x << "," << here->y << "\n";
-        dist = getDistance(here, rootNode);
-        if (dist < 3) break;
-
+        ftree << here->x << "," << here->y << ", " << here->hdAng*180.0/M_PI << "\n";
         here = here->parent;
     }
 
