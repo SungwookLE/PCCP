@@ -16,7 +16,7 @@ int main(){
         cout << lowerPos-A << " ";
     }
 
-    auto lowerPos = lower_bound(A, A+N, 10); // 없으면 A.end() 위치 이터레이터
+    auto lowerPos = lower_bound(A, A+N, 10); // A[i]>10 을 만족하는 해당 위치 이터레이터, 없으면 A.end() 위치 이터레이터
         cout << lowerPos-A << " ";
 
     cout << endl;

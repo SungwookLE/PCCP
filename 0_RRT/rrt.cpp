@@ -60,7 +60,7 @@ double getAngle(Node* Parent, Node* Child){
 bool Sampling(Node* sample, tuple<double, double, double> randomPoint){
 
     double dist = 0.0;
-    double towardAngle= M_PI_2, diffAngle = 0.0;
+    double towardAngle= 0, diffAngle = 0.0;
     double min_dist = 10*(width + height);
 
     int i = -1;
