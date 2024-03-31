@@ -1634,9 +1634,14 @@ while(q.size()){
     - [괄호변환](./3_히든퀘스트2/괄호변환.cpp)
 
   - [#2.자물쇠와열쇠]
-  https://blog.naver.com/jhc9639/221953235116
+    - https://programmers.co.kr/learn/courses/30/lessons/60059
+    - https://blog.naver.com/jhc9639/221953235116
+    - 매우 오래 걸려서.., 혼자 풀었음
+    - [자물쇠와열쇠](./3_히든퀘스트2/자물쇠와열쇠.cpp)
+    - 강의 들어보기
 
-
+  - (여기까지, 3/31)
+  
   - [#1.문자열압축]
   https://blog.naver.com/jhc9639/221953176281
 
