@@ -1612,41 +1612,45 @@ while(q.size()){
     - 풀어본 문제라서 풀었습니다.
     - LIS 문제임(최장 증가 수열)
 
-- (3/30, 여기까지)
-
 ### 2-10. 히든퀘스트_2
   - [프로그래머스 추천문제](https://blog.naver.com/jhc9639/222340359084) 풀기
-    - 프로그래머스 로그인 연결 (깃허브 계정 연동)
+    - 프로그래머스 로그인 연결 (깃허브 계정 연동 아이디로)
     - 내 로컬환경에서 백준 풀다가, 프로그래머스 환경에서 풀려니까, `IntelliSense`도 없고 그래서 불편하네.. 문법 등.. 확실하게 외우고 있어야 할듯함
 
-  - [#4.외벽점검]
-    - https://school.programmers.co.kr/learn/courses/30/lessons/60062
-    - https://blog.naver.com/jhc9639/221953358512
+  - [#4.외벽점검](./3_히든퀘스트2/외벽점검.cpp)
+    - [문제](https://school.programmers.co.kr/learn/courses/30/lessons/60062)
+    - [해설](https://blog.naver.com/jhc9639/221953358512)
     - 4시간 걸려서, 정답처리가 되긴 했는데..,
-    - [외벽점검](./3_히든퀘스트2/외벽점검.cpp)
+    - [내가 푼 외벽점검](./3_히든퀘스트2/외벽점검.cpp)
     - 테스트 케이스 오류인듯.. 아니면 뒷걸음질 치다가 뒷구르기 한 느낌이거나..
       - 강의를 들어봅시다.
   
-  - [#3.괄호변환]
-    - https://school.programmers.co.kr/learn/courses/30/lessons/60058
-    - https://blog.naver.com/jhc9639/221953283458
+  - [#3.괄호변환](./3_히든퀘스트2/괄호변환.cpp)
+    - [문제](https://school.programmers.co.kr/learn/courses/30/lessons/60058)
+    - [해설](https://blog.naver.com/jhc9639/221953283458)
     - 혼자 풀었음
     - [괄호변환](./3_히든퀘스트2/괄호변환.cpp)
 
-  - [#2.자물쇠와열쇠]
-    - https://programmers.co.kr/learn/courses/30/lessons/60059
-    - https://blog.naver.com/jhc9639/221953235116
+  - [#2.자물쇠와열쇠](./3_히든퀘스트2/자물쇠와열쇠.cpp)
+    - [문제](https://programmers.co.kr/learn/courses/30/lessons/60059)
+    - [해설](https://blog.naver.com/jhc9639/221953235116)
     - 매우 오래 걸려서.., 혼자 풀었음
     - [자물쇠와열쇠](./3_히든퀘스트2/자물쇠와열쇠.cpp)
     - 강의 들어보기
 
-  - (여기까지, 3/31)
-  
-  - [#1.문자열압축]
-  https://blog.naver.com/jhc9639/221953176281
+  - [#1.문자열압축](./3_히든퀘스트2/문자열압축.cpp)
+    - [문제](https://school.programmers.co.kr/learn/courses/30/lessons/60057)
+    - [해설](https://blog.naver.com/jhc9639/221953176281)
+    - 혼자 풀었음
 
-  - [#5.기지국설치]
-  https://blog.naver.com/jhc9639/222093730646
+  - [#5.기지국설치](./3_히든퀘스트2/기지국설치.cpp)
+    - [문제](https://programmers.co.kr/learn/courses/30/lessons/12979?language=python3#_=_)
+    - [해설](https://blog.naver.com/jhc9639/222093730646)
+    - 혼자 풀긴 풀었는데.. 쉬운 문제 같은데 오래 걸렸음
+    - 수학 공식을 유도해서 풀 수 있다고 하는데 강의 들어보기
 
+  - (4/1, 여기까지 풀었음, 2문제)
+    - 강의랑 정답코드까지 복습하고 다음 진도 나갈 것
+    - 한 문제 푸는데 시간 너무 오래 걸리네..
 
 ### 2-11. 7주차 DP
