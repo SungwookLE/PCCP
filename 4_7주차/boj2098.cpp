@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -8,15 +10,38 @@ vector<int> visited;
 vector<vector<int>> DP;
 int mn = 1E9;
 #define INF 987654321
+int cnt;
 
 int tsp(int here, int visited){
+    cout << cnt++ << ": "<<endl;
 
     if (visited == (1<<N)-1){ //  기저사례, 도시 전부 방문
         return W[here][0]? W[here][0]: INF;
     }
 
-    int &ret = DP[here][visited]; // 메모이제이션
-    if (ret != -1) return ret;
+    cout << "CALL: " << here << " ";
+    for(int i = 0 ; i < N ; ++i){
+        if (visited & (1<<i)) cout << 1;
+        else cout << 0;
+    }
+    cout << " " << DP[here][visited];
+    cout << endl;
+
+    int &ret = DP[here][visited]; // 메모이제이션, 이미 살펴본 정점에 대해선 또 살펴볼 필요가 없음
+    if (ret != -1){
+        return ret;
+    } 
+
+
+    cout << "RET : " << here <<" " ;
+    for(int i = 0 ; i < N ; ++i){
+        if (visited & (1<<i)) cout << 1;
+        else cout << 0;
+    }
+    cout << " " << DP[here][visited];
+    cout << endl;
+
+
 
     ret = INF;
     for(int i =0 ; i < N ; ++i){
