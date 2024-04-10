@@ -1,65 +1,39 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cstring>
 
 using namespace std;
 
 int N, M, C;
 pair<int, int> start, goal;
-vector<vector<int>> G;
-vector<pair<int, int>> c;
-typedef long long ll;
 vector<vector<int>> delta = {{1,0}, {0,1}};
-vector<bool> V;
-vector<vector<int>> DP;
+const int mod = 1000007;
 
-int go(pair<int, int> here, int cnt, vector<bool> visited){
-    int ret = 0;
+int DP[51][51][51][51];
+int G[51][51];
 
-    if (here.first == goal.first && here.second == goal.second){
-        int vCnt = 0;
-        for(int i = 0 ; i < C; ++i){
-            if (visited[i] == 1) vCnt ++;
-        }
-        if(vCnt == cnt){
-            return 1;
-        }
+int go (int i, int j, int cnt, int prev){
+
+    if (i > N || j > M) return 0;
+    if (i == N && j == M){
+        if (cnt == 0 && G[i][j] == 0) return 1;
+        if (cnt == 1 && G[i][j] > prev) return 1;
+        return 0;
     }
 
+    int& ret = DP[i][j][cnt][prev];
+    if (ret != -1) return ret;
 
-    for(auto d : delta){
-        int next_i = here.first + d[0];
-        int next_j = here.second+ d[1];
-
-        if (next_i <= 0 || next_i > N) continue;
-        if (next_j <= 0 || next_j > M) continue;
-
-        int idx = -1;
-        for(int i =0 ; i < C; ++i){
-            if (next_i == c[i].first && next_j == c[i].second){
-                if (visited[i] == 0){
-                    bool found = false;
-                    for(int j = i ; j < C; ++j){
-                        if (visited[j] == 1){
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found){
-                        visited[i] = 1;
-                        idx = i;
-                    }
-                }
-            }
-        }
-        ret += go({next_i, next_j}, cnt, visited);
-        if (idx != -1) visited[idx] = 0;
+    ret = 0;
+    if (G[i][j] == 0){
+        ret = (go(i+1, j, cnt, prev) + go(i, j+1, cnt, prev)) % mod;
     }
-
+    else if (G[i][j] > prev){
+        ret = (go(i+1, j, cnt-1, G[i][j])+ go(i, j+1, cnt-1, G[i][j])) % mod;
+    }
 
     return ret;
 }
-
-
 
 int main(){
     cin >> N >> M >> C;
@@ -67,22 +41,17 @@ int main(){
     start = {1,1};
     goal  = {N,M};
 
-    G = vector<vector<int>>(N+1, vector<int>(M+1,0));
-    c = vector<pair<int, int>>(C);
+    memset(DP, -1, sizeof(DP));
 
-    for(int i = 0; i < C; ++i){
-        cin >> c[i].first >> c[i].second;
+    int y, x;    
+    for(int i = 1; i <= C; ++i){
+        cin >> y >> x;
+        G[y][x] = i;
     }
-
 
     for(int i =0 ; i <= C; ++i){
-        V = vector<bool>(C,0);
-        cout <<  go({1,1}, i, V) << " ";
+        cout << go(1,1,i,0) << " ";
     }
-    cout << endl;
-
-
-
 
     return 0;
 }
