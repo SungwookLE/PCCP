@@ -17,7 +17,5 @@ int main(){
 
     cout << DP[100];
 
-
-
     return 0;
 }
