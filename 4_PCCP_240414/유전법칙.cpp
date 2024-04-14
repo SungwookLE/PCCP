@@ -12,43 +12,52 @@
 트리 생성에서 백트래킹하면 시간이 단축될테니 할만하다고 생각했는데, 이거 재귀호출되면 4^N이라 당연히 시간초과임... 
 */
 
-
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 
 using namespace std;
 
-vector<string> solution(vector<vector<int>> queries) {
-    vector<string> answer;
-    
 
+string go(vector<int> query){
+    int generation = query[0];
+    int birth = query[1]-1;
 
-    for(int i = 0 ; i < queries.size(); ++i){
-        int generation = queries[i][0];
-        int birth = queries[i][1]-1;
-        stack<int> st;
-      
-        for(int i = 1; i < generation; ++i){
-            st.push(birth%4);
-            birth /= 4;
-        }
-
-        string trait = "Rr";
-        while(!st.empty()){
-
-            if (trait == "rr" || trait == "RR") break;
-
-            if (st.top() == 0) trait = "RR";
-            else if (st.top() == 3) trait = "rr";
-            else trait = "Rr";
-            st.pop();
-        }
-
-        answer.push_back(trait);
-
+    stack<int> stk;
+    for(int i = generation; i >= 2 ; --i){
+        stk.push(birth%4);
+        birth /= 4;
     }
 
+    string ret = "Rr";
+    while(stk.size()){
 
+        if (ret == "RR"){
+            ret = "RR";
+        }
+        else if (ret == "rr"){
+            ret = "rr";
+        }
+        else if (ret == "Rr"){
+            if (stk.top() == 0)
+                ret = "RR";
+            else if (stk.top() == 1)
+                ret = "Rr";
+            else if (stk.top() == 2)
+                ret = "Rr";
+            else
+                ret = "rr";
+        }
+        stk.pop();
+    }
 
+    return ret;
+}
+
+vector<string> solution(vector<vector<int>> queries) {
+    vector<string> answer;
+
+    for(int i =0 ; i < queries.size(); ++i){
+        answer.push_back(go(queries[i]));
+    }
 
     return answer;
 }
