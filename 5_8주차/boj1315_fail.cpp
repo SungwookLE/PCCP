@@ -12,7 +12,8 @@ int go(int n, pair<int, int>Junku){
     if(n==N) return 0;
 
     int&ret = mp[Junku];
-    if(ret) return ret;
+    if(ret) return ret-1;
+
 
     for(int i =0 ; i < N ; ++i){
 
@@ -23,18 +24,14 @@ int go(int n, pair<int, int>Junku){
 
             if (Junku.first >= STR || Junku.second >= INT){
                 visited[i] = 1;
-
-                if(Junku.first+PNT > Junku.second+PNT){
-                    ret = go(n+1, {Junku.first+PNT, Junku.second})+1;
+                for(int p  =0 ; p <= PNT; ++p){
+                    ret = max(go(n+1, {Junku.first+p, Junku.second+PNT-p})+1, ret);
                 }
-                else{
-                    ret = go(n+1, {Junku.first, Junku.second+PNT})+1;
-                }
-
                 visited[i] = 0;
             }
         }
     }
+
 
     return ret;
 }
@@ -54,7 +51,7 @@ int main(){
     for(int i =0 ; i < N ; ++i){
         cin >> get<0>(I[i]) >> get<1>(I[i]) >> get<2>(I[i]);
     }
-    sort(I.begin(), I.end());
+
     cout << go(0, {1,1});
 
     return 0;
