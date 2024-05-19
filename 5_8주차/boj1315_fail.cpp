@@ -15,7 +15,7 @@ int go(int n, pair<int, int>Junku){
     if(ret) return ret-1;
 
 
-    for(int i =0 ; i < N ; ++i){
+    for(int i =0 ; i < N ; ++i){ // 여기에 해당하는 for문이 있는 이유는 방문순서를 달리하며 확인해보기 위함
 
         if(visited[i] == 0){
             int STR = get<0>(I[i]);

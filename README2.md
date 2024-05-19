@@ -2023,23 +2023,22 @@ while(q.size()){
   - 세그먼트 트리란 이진트리에, 어떤 쿼리에 대해 최적화한 값을 담아 놓은 것
   - 펜윅트리는 모든 세그먼트를 만들지 않은 상태의 트리로, 이러한 트리를 활용해서도 문제를 풀 수 있다.
     - 코드 snippet
-
-```c++
-      void update(int idx, int value){
-        while (idx <200004){
-            tree[idx] += value;
-            idx += (idx&-idx);
-      }
-      }
-      int sum(int idx){
-        int ret = 0;
-        while (idx>0){
-            ret += tree[idx];
-            idx -= (idx&-idx);
+      ```c++
+        void update(int idx, int value){
+          while (idx <200004){
+              tree[idx] += value;
+              idx += (idx&-idx);
         }
-        return ret;
-      }
-```
+        }
+        int sum(int idx){
+          int ret = 0;
+          while (idx>0){
+              ret += tree[idx];
+              idx -= (idx&-idx);
+          }
+          return ret;
+        }
+      ```
 
   - 펜윅트리 개념문제
     1. 펜윅트리를 활용한 문제 (구간합)
@@ -2074,7 +2073,7 @@ while(q.size()){
 
  #### 백준풀기 (8주차)
 
-  - [boj2618](./5_8주차/boj2618.cpp)
+  - [boj2618](./5_8주차/boj2618.cpp) // 8-A
     - 혼자 풀기 실패, 답지 보고 풀었음
       - 완탐으로 접근해서 값을 구하는 것 까지는 성공했는데, 어떻게 Trace를 할 수 있지, DP로 푸는게 아닌가 ..
       - DP 배열을 활용해서 Trace를 할 수 있었던 문제 였음
@@ -2083,13 +2082,56 @@ while(q.size()){
       2. 이를 Trace
     - 좀 어렵다. 이문제 ㅠㅠ
 
-  - [boj1315](./5_8주차/boj1315_teacher.cpp)
+  - [boj1315](./5_8주차/boj1315_teacher.cpp) // 8-B
     - 혼자 푸는 중, 시간 초과가 떠서 해결하는 중임..
     - DP 배열의 상태정의를 바꿔야 할 것 같은데, 문제는 틀린 DP여도 시간초과가 뜨고 있는 점..
     - 혼자 풀기 실패함 [boj1315시간초과](./5_8주차/boj1315_fail.cpp)
       - 방문 순서에 따라서도 모두 탐색해야한다고 생각해서 풀었더니 시간초과
       - 답지코드는 방문순서를 모두 탐색하지 않고서도에 대한 아이디어가 있음..!
-    - 강의부터 듣기
+    - `10일 쉬었습니다 ㅠㅠ (5/9~5/19), 회사일했음`
+    - 다시 풀어보았으나, 시간초과 [재도전](./5_8주차/boj1315_again.cpp)
     
+  - [boj17258](./5_8주차/boj17258.cpp) // 8-C
+    - 혼자 못 풀었음
+      - 구현이라도 해보려고 했는데 잘 안된다 ㅠㅠ
+    - 강의
+      - 전처리를 통해 문제에서 주어진 조건을 {시간길이,몇명} 으로 바꾼뒤, DP로 푸는 문제
+      - 흠.. 많이 어렵네
 
-  - 오늘은 여기까지 (5/9)
+  - 오늘 여기까지 (5/19, `끌어올려보자. 안주하지말자`)
+
+  
+  - [boj5419] // 8-D
+  
+  - [boj2302] // 8-E
+
+  - [boj1514] // 8-F
+
+  - [boj17623] // 8-G
+
+  - [boj17297] // 8-H
+
+  - [boj1280] // 8-I
+
+  - [boj3653] // 8-J
+
+  - [boj2042] // 8-K
+
+  - [boj11658] // 8-L
+
+  - [boj1486] // 8–M
+  
+  - [boj5719] // 8–N 
+
+● 8 – O : 16118 - http://boj.kr/6f3d01f6b29a414d8be0c709442cc87a
+● 8 – P : 1219 - http://boj.kr/34214ab6c944f59092bb5282b4c00e
+● 8 – Q : 1613 - http://boj.kr/b5c331e80b2246a7a52658cc8ea32528
+● 8 – R : 1238 - http://boj.kr/43cd6d006d824df1bd38467f384995
+● 8 – S : 9370 - http://boj.kr/e0f765a02fe44618937bb0f02d69d66d
+● 8 – T : 17612 - http://boj.kr/2b2757f9270842698bc2ac68e22d4869
+● 8 - U : 4485 - http://boj.kr/5c0465b64fd943d58f0192c1903a1119
+● 8 - V : 5373 - http://boj.kr/520da64fdd1a48f9b5ec227dc73f0353
+● 8 - W : 14864 - http://boj.kr/dae88a4d05f845cfbf693b1b2ea9d524
+● 8 - X : 15972 - http://boj.kr/52caf2495c83482fb5912f0c5cbbf935
+● 8 - Y : 17616 - http://boj.kr/20fd3e20efdf4a9ba00b3551435476e7
+● 8 - Z : 17611 - http://boj.kr/4fe2f4bb0369412b98e501a3b043bf24
