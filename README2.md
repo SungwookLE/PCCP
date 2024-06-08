@@ -2117,33 +2117,41 @@ while(q.size()){
 
   - [boj1514](./5_8주차/boj1514.cpp) // 8-F
     - 혼자 푸는 중.. 고민좀 더해보자, 쉬운문제같은데? 
-    - (6/4)
+    - 혼자 풀기 실패하였음, 어렵네요
 
-  - [boj17623] // 8-G
+  - 아래부터는 너무 어려운 난이도인듯 싶어서, 강의 부터 듣고 2회차에 풀어보기로 ('24.6/8)
+  - 강의가 끝난 이후에 하면 좋은 것들,
+    1. 강의 들으면서 틀렸거나, 많이 헷갈려거나 한 문제를 다시 풀기
+    2. 프로그래머스 사이트에 가서 카카오톡 기출 문제 & 목표회사 코테 유형에 맞는 공부
+    3. 알고리즘 감을 잃지 않기 위해 1문제 이상을 꾸준히 푸는게 중요
 
-  - [boj17297] // 8-H
+```
+  ● 8 – G : 17623 - http://boj.kr/00ad4ac2aa44401aaaf96f0a97e14449
+  ● 8 – H : 17297 - http://boj.kr/3fc34396e62a4a6591deed702e7a90a5
+  ● 8 – I : 1280 - http://boj.kr/44c2eee4e7d84583b105ede311497d38
+  ● 8 – J : 3653 - http://boj.kr/7be701572ee54c6990d42dfe4d9ea6af
+  ● 8 – K : 2042 - http://boj.kr/d1f5fb2b5ade4869b8a672b008e15e15
+  ● 8 – L : 11658 - http://boj.kr/0f0fddc4ee264e0cb9b238aa6819465c
+  ● 8 – M : 1486 - http://boj.kr/874184b8f1894296a27a2a7699fd3954
+  ● 8 – N : 5719 - http://boj.kr/0a4fdcae351643db8335990ㄹ7f8b3da85
+  ● 8 – O : 16118 - http://boj.kr/6f3d01f6b29a414d8be0c709442cc87a
+  ● 8 – P : 1219 - http://boj.kr/34214ab6c944f59092bb5282b4c00e
+  ● 8 – Q : 1613 - http://boj.kr/b5c331e80b2246a7a52658cc8ea32528
+  ● 8 – R : 1238 - http://boj.kr/43cd6d006d824df1bd38467f384995
+  ● 8 – S : 9370 - http://boj.kr/e0f765a02fe44618937bb0f02d69d66d
+  ● 8 – T : 17612 - http://boj.kr/2b2757f9270842698bc2ac68e22d4869
+  ● 8 - U : 4485 - http://boj.kr/5c0465b64fd943d58f0192c1903a1119
+  ● 8 - V : 5373 - http://boj.kr/520da64fdd1a48f9b5ec227dc73f0353
+  ● 8 - W : 14864 - http://boj.kr/dae88a4d05f845cfbf693b1b2ea9d524
+  ● 8 - X : 15972 - http://boj.kr/52caf2495c83482fb5912f0c5cbbf935
+  ● 8 - Y : 17616 - http://boj.kr/20fd3e20efdf4a9ba00b3551435476e7
+  ● 8 - Z : 17611 - http://boj.kr/4fe2f4bb0369412b98e501a3b043bf24
+```
 
-  - [boj1280] // 8-I
-
-  - [boj3653] // 8-J
-
-  - [boj2042] // 8-K
-
-  - [boj11658] // 8-L
-
-  - [boj1486] // 8–M
+  - 8주차 문제는 어려워서,, 핑계지만 강의만 쑥 훓고 끝냈음
+  - 나름 24년 상반기 내내 달렸는데, 8주차를 제대로 못 끝내서 아쉬운 마음이 드네,
+  - 코딩인증시험도 봤고 원하는 점수는 아니어서 아쉬움이 큰,, 
+  - 2회차 수강 후에 시험 다시 도전해봅시다.
+    - `To infinity`
   
-  - [boj5719] // 8–N 
-
-● 8 – O : 16118 - http://boj.kr/6f3d01f6b29a414d8be0c709442cc87a
-● 8 – P : 1219 - http://boj.kr/34214ab6c944f59092bb5282b4c00e
-● 8 – Q : 1613 - http://boj.kr/b5c331e80b2246a7a52658cc8ea32528
-● 8 – R : 1238 - http://boj.kr/43cd6d006d824df1bd38467f384995
-● 8 – S : 9370 - http://boj.kr/e0f765a02fe44618937bb0f02d69d66d
-● 8 – T : 17612 - http://boj.kr/2b2757f9270842698bc2ac68e22d4869
-● 8 - U : 4485 - http://boj.kr/5c0465b64fd943d58f0192c1903a1119
-● 8 - V : 5373 - http://boj.kr/520da64fdd1a48f9b5ec227dc73f0353
-● 8 - W : 14864 - http://boj.kr/dae88a4d05f845cfbf693b1b2ea9d524
-● 8 - X : 15972 - http://boj.kr/52caf2495c83482fb5912f0c5cbbf935
-● 8 - Y : 17616 - http://boj.kr/20fd3e20efdf4a9ba00b3551435476e7
-● 8 - Z : 17611 - http://boj.kr/4fe2f4bb0369412b98e501a3b043bf24
+## 끝

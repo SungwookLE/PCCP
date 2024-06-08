@@ -1,77 +1,37 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-int N;
-string CUR, PWD;
-vector<int> C, P;
-#define INIT 100000
-int ans = INIT;
+const int INF = 987654321;
+int n, a[104], b[104], dp[104][10][10][10][2];
 
-int go(vector<int> c, int count){
-    int ret = INIT;
+int _mod(int x){
+    return (x<0)? x+10: x % 10;
+}
 
-    if(count >= ans) return count;
-    
-    cout << count << ": " ;
-    for(int i = 0 ; i < N ; ++i){
-        cout << c[i] ;
+int f(int pos, int x, int y, int z, int flag){
+
+    if (pos == n) return 0;
+    int &ret = dp[pos][x][y][z][flag];
+    if(ret != -1) return ret;
+    if (_mod(x+a[pos]) == _mod(b[pos])){
+        return ret = min(f(pos+1, y, z, 0, 0), f(pos+1, y, z, 0, 1));
+    } 
+    ret = INF;
+    int _flag = flag? 1: -1;
+    for(int i = 1; i <=3; ++i){
+        ret = min(ret, 1 + f(pos, _mod(x+i*_flag), y, z, flag));
+        ret = min(ret, 1 + f(pos, _mod(x+i*_flag), _mod(y+i*_flag), z, flag));
+        ret = min(ret, 1 + f(pos, _mod(x+i*_flag), _mod(y+i*_flag), _mod(z+i*_flag), flag));
     }
-    cout << endl;
-    
-    bool isSame = true;
-    for(int i = 0 ; i < N ; ++i){
-        if (c[i] != P[i]){
-            isSame = false;
-            break;
-        }
-    }
-    if (isSame){
-        ans = count;
-        return count;
-    }
-
-    vector<vector<int>> comb;
-    for(int stride = 1; stride <=3; ++stride){
-        for(int i = 0 ; i <= N-stride ; ++i){
-            vector<int> temp;
-            for(int j = i; j<(i+stride); ++j){
-                temp.push_back(j);
-            }
-            comb.push_back(temp);
-        }
-    }
-    for(auto idx: comb){
-        for(int rot = 1; rot <= 3; ++rot){
-            for(auto id : idx) c[id] = (c[id]+rot)%10;
-            ret = min(ret, go(c, count+1));
-            for(auto id : idx) c[id] = (c[id]+10-rot)%10;
-        }
-
-        for(int rot = 1; rot <= 3; ++rot){
-            for(auto id : idx) c[id] = (c[id]+10-rot)%10;
-            ret = min(ret, go(c, count+1));
-            for(auto id : idx) c[id] = (c[id]+rot)%10;
-        }
-    }
-
-
     return ret;
 }
 
-
-// 현재 자물쇠의 상태와 세준이의 비밀번호가 주어질 때, 자물쇠를 최소 몇 번 돌려야 풀 수 있는지 구하는 프로그램
 int main(){
-    cin >> N;
-    cin >> CUR >> PWD;
-    C = vector<int>(N,0);
-    P = vector<int>(N,0);
-
-    for(int i = 0 ; i < N; ++i){
-        C[i] = CUR[i]-'0';
-        P[i] = PWD[i]-'0';    
-    }
-
-    cout << go(C, 0);
+    memset(dp, -1, sizeof(dp));
+    cin >> n;
+    for(int i =0 ; i < n ; ++i) scanf("%1d", &a[i]);
+    for(int i =0 ; i < n ; ++i) scanf("%1d", &b[i]);
+    cout << min(f(0,0,0,0,0), f(0,0,0,0,1));
 
     return 0;
 }
