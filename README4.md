@@ -40,7 +40,7 @@ void make_combi(int start, vector<int>C){
     - 인접행렬: 정점과 간선의 관계를 나타나는 `bool`타입의 정사각형 2차원 배열 (노드끼리 연결되어 있으면 `T`)
         - adj[from][to]
         ```
-    (N)  0   1   2   3
+        V   0   1   2   3
         0   T   T   F   F
         1   T   T   T   T
         2   F   T   T   F
@@ -59,7 +59,46 @@ void make_combi(int start, vector<int>C){
         - 시간복잡도<간선 하나 찾기> O(V)
         - 시간복잡도<간선 모두 탐색> O(V+E)
 
-    - #9(DFS), #10(BFS) 부터 듣기 (10/10~)
+6. 탐색알고리즘1(DFS, 깊이우선탐색)
+- 연결된 노드를 계속해서 `재귀호출`로 반복하는 깊이 탐색
+```
+DFS(u, adj){
+    u.visited = true;
+    for(v : adj[u]){
+        if (v.visited==0)
+            DFS(v,adj);
+    }
+}
+```
+
+7. 탐색알고리즘2(BFS, 너비우선탐색)
+- 현재 연결된 노드들을 모두 찾은 뒤, `queue`에 넣어주고 다시 꺼내는 방식을 통해 가장 가까운 곳을 방문하는 레벨 별로 탐색
+- 어떤 정점에서 시작해 다음 깊이의 정점으로 이동하기전 현재 깊이의 모든 정점을 탐색하며 방문한 정점은 다시 방문하지 않는 알고리즘입니다. 같은 가중치를 가진 그래프에서 최단거리알고리즘으로 쓰입니다.
+```
+BFS(){
+    queue.push(start)
+    searched[start] = 1;
+
+    while(queue.size()){
+        here = queue.front()
+        queue.pop()
+        for(auto there : adj[here]){
+            if (searched[there] == 0){
+                searched[there] = 1; //최단거리 정보를 담고자할 땐, searched[there] += 1; 
+                queue.push(there);
+            }
+        }
+    }
+}
+```
+- 시간복잡도는 그래프의 구현방식이 인접리스트면 O(V+E), 인접행렬이면 O(V^2)이고, BFS/DFS에 따른 차이 없음
+    - DFS는 메모리를 덜 쓰며, 코드가 좀 더 짧고 완전탐색 시 사용
+    - BFS는 메모리를 더 쓰고, 가중치가 같은 그래프라면 최단거리를 구하는데에 많이 사용함
+
+
+- #12부터 강의 듣기 (10/12~)
+
+
 
 ### 2. 문제풀이 기록 
 #### 1주차
