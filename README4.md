@@ -40,11 +40,10 @@ void make_combi(int start, vector<int>C){
     - 인접행렬: 정점과 간선의 관계를 나타나는 `bool`타입의 정사각형 2차원 배열 (노드끼리 연결되어 있으면 `T`)
         - adj[from][to]
         ```
-        V   0   1   2   3
-        0   T   T   F   F
-        1   T   T   T   T
-        2   F   T   T   F
-        3   F   T   F   T
+        V   0   1   2   
+        0   T   T   F   
+        1   T   T   T   
+        2   F   T   T   
         ```
         - 공간복잡도 O(V^2) 
         - 시간복잡도<간선 하나 찾기> O(1)
@@ -96,7 +95,40 @@ BFS(){
     - BFS는 메모리를 더 쓰고, 가중치가 같은 그래프라면 최단거리를 구하는데에 많이 사용함
 
 
-- #12부터 강의 듣기 (10/12~)
+8. 트리순회 (재귀호출을 통한 traversal)
+- 후위순회(post-order): 자식부터
+```
+postorder(node){
+    if (node.visited == false){
+        postorder(node->left)
+        postorder(node->right)
+        node.visited = true
+    }
+}
+```
+- 전위순회(pre-order): 자신먼저
+```
+preorder(node){
+    if (node.visited==false){
+        node.visited=true;
+        preorder(node->left);
+        preorder(node->right);
+
+    }
+}
+```
+- in-order: 안에 넣다
+```
+inorder(node){
+    if(node.visited==false){
+        inorder(node->left);
+        node.visited = true;
+        inorder(node->right);
+    }
+}
+```
+
+
 
 
 
@@ -107,10 +139,9 @@ BFS(){
 - #1629. #3986, #4375
 
 #### 2주차
+- #2178(A), #1012(B), #2468(C)
 - 
-● 2 - A : 2178 – http://boj.kr/2f0e1a0d5eab489dac865b3ee7e0fa80
-● 2 - B : 1012 - http://boj.kr/c2c09d04946f4cc6844f295e38553ca6
-● 2 - C : 2468 - http://boj.kr/cf2c8a947f5041b69efd55961657526c
+
 ● 2 - D : 2583 - http://boj.kr/e94fb8e43b714794a0950505c0091594
 ● 2 - E : 1992 - http://boj.kr/f833f244536f48fa960ea96f9b5a35fb
 ● 2 - F : 2828 - http://boj.kr/fdee73d789cf421db0e71ad9d332cb4a
