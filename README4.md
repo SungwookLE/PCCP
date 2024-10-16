@@ -140,10 +140,8 @@ inorder(node){
 
 #### 2주차
 - #2178(A), #1012(B), #2468(C), #2583(D), #1992(E)
-- 
+- #2828(F), #2910(G)
 
-● 2 - F : 2828 - http://boj.kr/fdee73d789cf421db0e71ad9d332cb4a
-● 2 - G : 2910 - http://boj.kr/5ab43b14d0489aac5c48a0a717c1a8
 ● 2 - H : 4659 - http://boj.kr/e531e15e4f3b4d828f8295934feafd07
 ● 2 - I : 2870 - http://boj.kr/ae47352b83d04d0c9fa5f5e88d697682
 ● 2 - J : 10709 - http://boj.kr/2e4e57d962ef41a9bb4bc8f670ac158c
