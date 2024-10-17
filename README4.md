@@ -141,9 +141,8 @@ inorder(node){
 #### 2주차
 - #2178(A), #1012(B), #2468(C), #2583(D), #1992(E)
 - #2828(F), #2910(G)
+- #4659(H), #2870(I)
 
-● 2 - H : 4659 - http://boj.kr/e531e15e4f3b4d828f8295934feafd07
-● 2 - I : 2870 - http://boj.kr/ae47352b83d04d0c9fa5f5e88d697682
 ● 2 - J : 10709 - http://boj.kr/2e4e57d962ef41a9bb4bc8f670ac158c
 ● 2 - K : 3474 - http://boj.kr/89fea6fe8f9241b1980f0fac22342679
 ● 2 - L : 2852 - http://boj.kr/5d5e7e5459524080abec73ee77de2fbe
