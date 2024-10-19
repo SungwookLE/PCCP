@@ -13,7 +13,7 @@ int main()
         cin >> N ;
 
 
-        ll ret2 = 0, ret5 = 0; // 2의배수를 담을 것, 5의 배수를 담을 것
+        ll ret2 = 0, ret5 = 0; // 2의거듭를 담을 것, 5의 거듭를 담을 것
         for(ll j = 2 ; j <= N; j*=2){
             ret2 += N/j;
         }
