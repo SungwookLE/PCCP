@@ -21,10 +21,9 @@ int main(){
             cnt5+= NUM/i;
         }
 
-        // 왜 팩토리얼이 아닌 NUM만 가지고 계산해도 되는걸까?
+        // 왜 팩토리얼이 아닌 NUM만 가지고 계산해도 되는걸까? --> README4.md 
         cout << min(cnt2,cnt5) << endl;
     }
 
 
     return 0;
-}
