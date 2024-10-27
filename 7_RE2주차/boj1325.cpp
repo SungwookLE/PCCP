@@ -3,7 +3,7 @@ using namespace std;
 
 int N, M;
 typedef struct graph_st{
-    int here;
+    int here; // 사이클 구조가 있을수도 있기 때문에 추가해준것
     vector<graph_st*> child;
 }graph;
 
