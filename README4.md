@@ -168,8 +168,8 @@ visited[next_i][next_j] = 0;
     - #2598 인간의 실수는 반복된다는게,, combi->bfs로 풀이를 이전과 똑같이 떠올렸고 시간초과 발생
     - 이 문제는 `Start, Goal` 지점에 대한 combination을 구해놓고 할 필요가 없이, `Start`들에 대한 모든 distance space를 구한뒤 그 중 최대값을 알려주면 되는 문제이다. 굳이 `Start-Goal` 세트에 대한 bfs를 모두 돌려볼 필요가 없다는거지..,
 
+- #16234(C)
 
-● 3 - C : 16234 - http://boj.kr/5d7d83e1069547288f02236c01cc8d5a
 ● 3 - D : 4179 - http://boj.kr/d9a60c043e7d428bac7374f83c5ca09d
 ● 3 - E : 12869 - http://boj.kr/69448cd6c1b24fb193bc7564c7b1d5b0
 ● 3 - F : 16637 - http://boj.kr/b9ba29f807a2445f901edce77df4ad01
