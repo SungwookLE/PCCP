@@ -169,10 +169,10 @@ visited[next_i][next_j] = 0;
     - 이 문제는 `Start, Goal` 지점에 대한 combination을 구해놓고 할 필요가 없이, `Start`들에 대한 모든 distance space를 구한뒤 그 중 최대값을 알려주면 되는 문제이다. 굳이 `Start-Goal` 세트에 대한 bfs를 모두 돌려볼 필요가 없다는거지..,
 
 - #16234(C)
+- #4179(D): BFS를 직렬로 2개 배치해서 풀어야하는 문제임, 불이 퍼지는 시간을 기록해둔 뒤, 시간을 비교해서 지훈의 탐색공간 BFS!
 
-● 3 - D : 4179 - http://boj.kr/d9a60c043e7d428bac7374f83c5ca09d
-● 3 - E : 12869 - http://boj.kr/69448cd6c1b24fb193bc7564c7b1d5b0
-● 3 - F : 16637 - http://boj.kr/b9ba29f807a2445f901edce77df4ad01
+// - #12869(E), #16637(F)
+
 ● 3 - G : 12851 - http://boj.kr/6733d00393ba47a98811a83eb6c643
 ● 3 - H : 13913 - http://boj.kr/69f8a56f74744fbfb766bbc5fef23a79
 ● 3 - I : 17071 - http://boj.kr/c21e35e4db3143cc9f1e809d10f6eb86
